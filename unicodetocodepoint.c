@@ -165,6 +165,7 @@ uint8_t unicodetocodepoint(uint16_t c, bool decgraphics) {
     case 0x007E: return 0x7E; // TILDE
     case 0x007F: return 0x7F; // DELETE
     case 0x20AC: return 0x80; // EURO SIGN
+    case 0x03C0: return 0x81; // GREEK SMALL LETTER PI
     case 0x201A: return 0x82; // SINGLE LOW-9 QUOTATION MARK
     case 0x0192: return 0x83; // LATIN SMALL LETTER F WITH HOOK
     case 0x201E: return 0x84; // DOUBLE LOW-9 QUOTATION MARK
@@ -176,7 +177,9 @@ uint8_t unicodetocodepoint(uint16_t c, bool decgraphics) {
     case 0x0160: return 0x8A; // LATIN CAPITAL LETTER S WITH CARON
     case 0x2039: return 0x8B; // SINGLE LEFT-POINTING ANGLE QUOTATION MARK
     case 0x0152: return 0x8C; // LATIN CAPITAL LIGATURE OE
+    case 0x2264: return 0x8D; // LESS-THAN OR EQUAL TO
     case 0x017D: return 0x8E; // LATIN CAPITAL LETTER Z WITH CARON
+    case 0x2260: return 0x8F; // NOT EQUAL TO
     case 0x2018: return 0x91; // LEFT SINGLE QUOTATION MARK
     case 0x2019: return 0x92; // RIGHT SINGLE QUOTATION MARK
     case 0x201C: return 0x93; // LEFT DOUBLE QUOTATION MARK
@@ -189,6 +192,7 @@ uint8_t unicodetocodepoint(uint16_t c, bool decgraphics) {
     case 0x0161: return 0x9A; // LATIN SMALL LETTER S WITH CARON
     case 0x203A: return 0x9B; // SINGLE RIGHT-POINTING ANGLE QUOTATION MARK
     case 0x0153: return 0x9C; // LATIN SMALL LIGATURE OE
+    case 0x2265: return 0x9D; // GREATER-THAN OR EQUAL TO
     case 0x017E: return 0x9E; // LATIN SMALL LETTER Z WITH CARON
     case 0x0178: return 0x9F; // LATIN CAPITAL LETTER Y WITH DIAERESIS
     case 0x00A0: return 0xA0; // NO-BREAK SPACE
