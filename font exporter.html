@@ -12,7 +12,7 @@
     let ctx = c.getContext("2d");
 
     // Load the font source bitmap
-    let f = await fetch("VT2040-font source.pbm");
+    let f = await fetch("font source.pbm");
     let lines = (await f.text()).split("\n");
 
     // Read the bitmap width and height
