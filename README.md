@@ -9,4 +9,4 @@ Based in part on the Mullard SAA5050 font and smoothing algorithm, with tweaks t
 ## To-do
 
 * Export as a C header file.
-* Create mappings from Unicode and DEC special graphics character sets.
+* Add LESS-THAN OR EQUAL TO, GREATER-THAN OR EQUAL TO, GREEK SMALL LETTER PI, and NOT EQUAL TO.
