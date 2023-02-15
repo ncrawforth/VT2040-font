@@ -1,0 +1,76 @@
+<!doctype html>
+<body>
+  <div><canvas id="canvas" /></div>
+  <div><a id="exportpng" href="#" download="VT2040-font.png"><button>Export as PNG</button></a></div>
+</body>
+<script>
+  (async function() {
+    // Get the canvas drawing context
+    let c = document.getElementById("canvas");
+    c.style.imageRendering = "pixelated";
+    let ctx = c.getContext("2d");
+
+    // Load the font source bitmap
+    let f = await fetch("VT2040-font source.pbm");
+    let lines = (await f.text()).split("\n");
+
+    // Read the bitmap width and height
+    let i = 0;
+    while (i < lines.length) {
+      let [width, height] = lines[i].split(" ");
+      i++;
+      width = parseInt(width); height = parseInt(height);
+      if (!isNaN(width) && !isNaN(height)) {
+        c.width = width; c.height = height;
+        break;
+      }
+    }
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 0, c.width, c.height);
+
+    // Read the bitmap pixels into the canvas
+    ctx.fillStyle = "black";
+    let x = 0, y = 0;
+    while (i < lines.length) {
+      let line = lines[i];
+      i++;
+      for (let j = 0; j < line.length; j++) {
+        if (line.charAt(j) == "0") {
+          x++;
+        } else if (line.charAt(j) == "1") {
+          ctx.fillRect(x, y, 1, 1);
+          x++;
+        }
+        if (x >= c.width) {
+          x = 0;
+          y++;
+        }
+      }
+    }
+
+    // Antialias the font
+    ctx.fillStyle = "#dfdfdf";
+    for (let cx = 0; cx < c.width; cx += 6) {
+      for (let cy = 0; cy < c.height; cy += 13) {
+        for (let x = cx; x < cx + 5; x++) {
+          for (let y = cy; y < cy + 12; y++) {
+            let p1 = ctx.getImageData(x, y, 1, 1).data[0];
+            let p2 = ctx.getImageData(x + 1, y, 1, 1).data[0];
+            let p3 = ctx.getImageData(x, y + 1, 1, 1).data[0];
+            let p4 = ctx.getImageData(x + 1, y + 1, 1, 1).data[0];
+            if (p1 == 0 && p2 != 0 && p3 != 0 && p4 == 0) {
+              ctx.fillRect(x + 1, y, 1, 1);
+              ctx.fillRect(x, y + 1, 1, 1);
+            } else if (p1 != 0 && p2 == 0 && p3 == 0 && p4 != 0) {
+              ctx.fillRect(x, y, 1, 1);
+              ctx.fillRect(x + 1, y + 1, 1, 1);
+            }
+          }
+        }
+      }
+    }
+
+    // Export as PNG
+    exportpng.href = c.toDataURL("image/png");
+  })();
+</script>
