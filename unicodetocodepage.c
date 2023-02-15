@@ -1,4 +1,4 @@
-uint8_t unicodetocodepoint(uint16_t c, bool decgraphics) {
+uint8_t unicodetocodepage(uint16_t c, bool decgraphics) {
   if (decgraphics) { // First map DEC special graphics to Unicode
     switch (c) {
       case 0x005f: c = 0x00a0; break;
