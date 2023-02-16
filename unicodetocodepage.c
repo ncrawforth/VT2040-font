@@ -1,3 +1,6 @@
+#include <stdint.h>
+#include <stdbool.h>
+
 uint8_t unicodetocodepage(uint16_t c, bool decgraphics) {
   if (decgraphics) { // First map DEC special graphics to Unicode
     switch (c) {
