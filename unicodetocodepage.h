@@ -1,1 +1,1 @@
-uint8_t unicodetocodepage(uint16_t c, bool decgraphics)
+char unicodetocodepage(int32_t c, bool decgraphics);
